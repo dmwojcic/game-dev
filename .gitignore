@@ -1,0 +1,5 @@
+node_modules/
+out/
+# pxl previews and viewer feedback are local working files; the built art in assets/art is committed
+assets/art/_preview/
+assets/art/_feedback/

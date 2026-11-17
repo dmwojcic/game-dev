@@ -1,0 +1,29 @@
+name: Art
+on:
+  push:
+    paths: ["art/**", ".claude/skills/pxl-pixel-art/**", ".github/workflows/art.yml"]
+  pull_request:
+    paths: ["art/**", ".claude/skills/pxl-pixel-art/**", ".github/workflows/art.yml"]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Build art
+        run: npm run art
+      - name: Lint art
+        run: npm run art:lint
+      - name: Built art matches the sources
+        run: |
+          if ! git diff --quiet -- assets/art; then
+            git status --short assets/art
+            echo "::error::assets/art is out of date. Run 'npm run art' and commit the result."
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: art-previews
+          path: assets/art/_preview

@@ -1,0 +1,13 @@
+{
+  "name": "game-dev",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.18" },
+  "scripts": {
+    "art": "node .claude/skills/pxl-pixel-art/bin/pxl.js build art/game.px.js --out assets/art",
+    "art:serve": "node .claude/skills/pxl-pixel-art/bin/pxl.js serve art/game.px.js --out assets/art",
+    "art:lint": "node .claude/skills/pxl-pixel-art/bin/pxl.js lint art/game.px.js --out assets/art",
+    "pxl": "node .claude/skills/pxl-pixel-art/bin/pxl.js",
+    "update-pxl": "bash scripts/update-pxl.sh"
+  }
+}
